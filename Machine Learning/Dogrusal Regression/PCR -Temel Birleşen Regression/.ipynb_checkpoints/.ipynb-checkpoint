@@ -1,0 +1,1931 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Veri setini Dahil etme "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Veri setinin hikayesi :\n",
+    "    Veri seti Amerikan liginde oynuyan baksetbolcuların yeteneksel performanslarını ,kariyer başarılarını ve maaşlarını kapsamaktadır "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 262,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>AtBat</th>\n",
+       "      <th>Hits</th>\n",
+       "      <th>HmRun</th>\n",
+       "      <th>Runs</th>\n",
+       "      <th>RBI</th>\n",
+       "      <th>Walks</th>\n",
+       "      <th>Years</th>\n",
+       "      <th>CAtBat</th>\n",
+       "      <th>CHits</th>\n",
+       "      <th>CHmRun</th>\n",
+       "      <th>CRuns</th>\n",
+       "      <th>CRBI</th>\n",
+       "      <th>CWalks</th>\n",
+       "      <th>League</th>\n",
+       "      <th>Division</th>\n",
+       "      <th>PutOuts</th>\n",
+       "      <th>Assists</th>\n",
+       "      <th>Errors</th>\n",
+       "      <th>Salary</th>\n",
+       "      <th>NewLeague</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <td>0</td>\n",
+       "      <td>293</td>\n",
+       "      <td>66</td>\n",
+       "      <td>1</td>\n",
+       "      <td>30</td>\n",
+       "      <td>29</td>\n",
+       "      <td>14</td>\n",
+       "      <td>1</td>\n",
+       "      <td>293</td>\n",
+       "      <td>66</td>\n",
+       "      <td>1</td>\n",
+       "      <td>30</td>\n",
+       "      <td>29</td>\n",
+       "      <td>14</td>\n",
+       "      <td>A</td>\n",
+       "      <td>E</td>\n",
+       "      <td>446</td>\n",
+       "      <td>33</td>\n",
+       "      <td>20</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>A</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>1</td>\n",
+       "      <td>315</td>\n",
+       "      <td>81</td>\n",
+       "      <td>7</td>\n",
+       "      <td>24</td>\n",
+       "      <td>38</td>\n",
+       "      <td>39</td>\n",
+       "      <td>14</td>\n",
+       "      <td>3449</td>\n",
+       "      <td>835</td>\n",
+       "      <td>69</td>\n",
+       "      <td>321</td>\n",
+       "      <td>414</td>\n",
+       "      <td>375</td>\n",
+       "      <td>N</td>\n",
+       "      <td>W</td>\n",
+       "      <td>632</td>\n",
+       "      <td>43</td>\n",
+       "      <td>10</td>\n",
+       "      <td>475.0</td>\n",
+       "      <td>N</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>2</td>\n",
+       "      <td>479</td>\n",
+       "      <td>130</td>\n",
+       "      <td>18</td>\n",
+       "      <td>66</td>\n",
+       "      <td>72</td>\n",
+       "      <td>76</td>\n",
+       "      <td>3</td>\n",
+       "      <td>1624</td>\n",
+       "      <td>457</td>\n",
+       "      <td>63</td>\n",
+       "      <td>224</td>\n",
+       "      <td>266</td>\n",
+       "      <td>263</td>\n",
+       "      <td>A</td>\n",
+       "      <td>W</td>\n",
+       "      <td>880</td>\n",
+       "      <td>82</td>\n",
+       "      <td>14</td>\n",
+       "      <td>480.0</td>\n",
+       "      <td>A</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>3</td>\n",
+       "      <td>496</td>\n",
+       "      <td>141</td>\n",
+       "      <td>20</td>\n",
+       "      <td>65</td>\n",
+       "      <td>78</td>\n",
+       "      <td>37</td>\n",
+       "      <td>11</td>\n",
+       "      <td>5628</td>\n",
+       "      <td>1575</td>\n",
+       "      <td>225</td>\n",
+       "      <td>828</td>\n",
+       "      <td>838</td>\n",
+       "      <td>354</td>\n",
+       "      <td>N</td>\n",
+       "      <td>E</td>\n",
+       "      <td>200</td>\n",
+       "      <td>11</td>\n",
+       "      <td>3</td>\n",
+       "      <td>500.0</td>\n",
+       "      <td>N</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>4</td>\n",
+       "      <td>321</td>\n",
+       "      <td>87</td>\n",
+       "      <td>10</td>\n",
+       "      <td>39</td>\n",
+       "      <td>42</td>\n",
+       "      <td>30</td>\n",
+       "      <td>2</td>\n",
+       "      <td>396</td>\n",
+       "      <td>101</td>\n",
+       "      <td>12</td>\n",
+       "      <td>48</td>\n",
+       "      <td>46</td>\n",
+       "      <td>33</td>\n",
+       "      <td>N</td>\n",
+       "      <td>E</td>\n",
+       "      <td>805</td>\n",
+       "      <td>40</td>\n",
+       "      <td>4</td>\n",
+       "      <td>91.5</td>\n",
+       "      <td>N</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   AtBat  Hits  HmRun  Runs  RBI  Walks  Years  CAtBat  CHits  CHmRun  CRuns  \\\n",
+       "0    293    66      1    30   29     14      1     293     66       1     30   \n",
+       "1    315    81      7    24   38     39     14    3449    835      69    321   \n",
+       "2    479   130     18    66   72     76      3    1624    457      63    224   \n",
+       "3    496   141     20    65   78     37     11    5628   1575     225    828   \n",
+       "4    321    87     10    39   42     30      2     396    101      12     48   \n",
+       "\n",
+       "   CRBI  CWalks League Division  PutOuts  Assists  Errors  Salary NewLeague  \n",
+       "0    29      14      A        E      446       33      20     NaN         A  \n",
+       "1   414     375      N        W      632       43      10   475.0         N  \n",
+       "2   266     263      A        W      880       82      14   480.0         A  \n",
+       "3   838     354      N        E      200       11       3   500.0         N  \n",
+       "4    46      33      N        E      805       40       4    91.5         N  "
+      ]
+     },
+     "execution_count": 262,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import pandas as pd \n",
+    "hit = pd.read_csv(\"Hitters.csv\")\n",
+    "hit = hit.copy()\n",
+    "hit.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 263,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "RangeIndex: 322 entries, 0 to 321\n",
+      "Data columns (total 20 columns):\n",
+      "AtBat        322 non-null int64\n",
+      "Hits         322 non-null int64\n",
+      "HmRun        322 non-null int64\n",
+      "Runs         322 non-null int64\n",
+      "RBI          322 non-null int64\n",
+      "Walks        322 non-null int64\n",
+      "Years        322 non-null int64\n",
+      "CAtBat       322 non-null int64\n",
+      "CHits        322 non-null int64\n",
+      "CHmRun       322 non-null int64\n",
+      "CRuns        322 non-null int64\n",
+      "CRBI         322 non-null int64\n",
+      "CWalks       322 non-null int64\n",
+      "League       322 non-null object\n",
+      "Division     322 non-null object\n",
+      "PutOuts      322 non-null int64\n",
+      "Assists      322 non-null int64\n",
+      "Errors       322 non-null int64\n",
+      "Salary       263 non-null float64\n",
+      "NewLeague    322 non-null object\n",
+      "dtypes: float64(1), int64(16), object(3)\n",
+      "memory usage: 50.4+ KB\n"
+     ]
+    }
+   ],
+   "source": [
+    "hit.info()\n",
+    "# veri seti 3 tane kategorik değişkenden oluşmakta biz bunları dummy etmemiz lazım \n",
+    "# veri setinde float değer olduğu için veri serini dummy işleminden sonra datatype = float64 olarak ayarlanmalıdır \n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 264,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(322, 20)"
+      ]
+     },
+     "execution_count": 264,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "hit.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 265,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 265,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "hit.isnull().values.any()\n",
+    "# veri setinde boş gözlem var "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 266,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "59"
+      ]
+     },
+     "execution_count": 266,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "hit.isnull().values.sum()\n",
+    "# 59 tane boşluk var "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 267,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "AtBat         0\n",
+       "Hits          0\n",
+       "HmRun         0\n",
+       "Runs          0\n",
+       "RBI           0\n",
+       "Walks         0\n",
+       "Years         0\n",
+       "CAtBat        0\n",
+       "CHits         0\n",
+       "CHmRun        0\n",
+       "CRuns         0\n",
+       "CRBI          0\n",
+       "CWalks        0\n",
+       "League        0\n",
+       "Division      0\n",
+       "PutOuts       0\n",
+       "Assists       0\n",
+       "Errors        0\n",
+       "Salary       59\n",
+       "NewLeague     0\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 267,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "hit.isnull().sum()\n",
+    "# evet veri setinde basketbolcularımızın maaşları eksik olan kişiler var \n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Veri setinin Makina öğrenmesine uygun hale getirilmesi"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 268,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>League_A</th>\n",
+       "      <th>League_N</th>\n",
+       "      <th>Division_E</th>\n",
+       "      <th>Division_W</th>\n",
+       "      <th>NewLeague_A</th>\n",
+       "      <th>NewLeague_N</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>2</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>3</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>4</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>317</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>318</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>319</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>320</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>321</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>322 rows × 6 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "     League_A  League_N  Division_E  Division_W  NewLeague_A  NewLeague_N\n",
+       "0           1         0           1           0            1            0\n",
+       "1           0         1           0           1            0            1\n",
+       "2           1         0           0           1            1            0\n",
+       "3           0         1           1           0            0            1\n",
+       "4           0         1           1           0            0            1\n",
+       "..        ...       ...         ...         ...          ...          ...\n",
+       "317         0         1           1           0            0            1\n",
+       "318         1         0           1           0            1            0\n",
+       "319         1         0           0           1            1            0\n",
+       "320         1         0           1           0            1            0\n",
+       "321         1         0           0           1            1            0\n",
+       "\n",
+       "[322 rows x 6 columns]"
+      ]
+     },
+     "execution_count": 268,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "dms = pd.get_dummies(hit[[\"League\" , \"Division\" ,\"NewLeague\"]])\n",
+    "dms\n",
+    "\n",
+    "# evet dummy değişken tuzagına düşüldü bu durumdan kurtulmamız lazım \n",
+    "# ame ben bununla ugraşmak yerine label encoder 'i kullanacağım "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 269,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.preprocessing import LabelEncoder\n",
+    "lbe = LabelEncoder()\n",
+    "\n",
+    "transform_list = [\"League\" ,\"Division\" , \"NewLeague\"]\n",
+    "\n",
+    "for i in transform_list:\n",
+    "    hit[i] = lbe.fit_transform(hit[i])\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 270,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>AtBat</th>\n",
+       "      <th>Hits</th>\n",
+       "      <th>HmRun</th>\n",
+       "      <th>Runs</th>\n",
+       "      <th>RBI</th>\n",
+       "      <th>Walks</th>\n",
+       "      <th>Years</th>\n",
+       "      <th>CAtBat</th>\n",
+       "      <th>CHits</th>\n",
+       "      <th>CHmRun</th>\n",
+       "      <th>CRuns</th>\n",
+       "      <th>CRBI</th>\n",
+       "      <th>CWalks</th>\n",
+       "      <th>League</th>\n",
+       "      <th>Division</th>\n",
+       "      <th>PutOuts</th>\n",
+       "      <th>Assists</th>\n",
+       "      <th>Errors</th>\n",
+       "      <th>Salary</th>\n",
+       "      <th>NewLeague</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <td>0</td>\n",
+       "      <td>293</td>\n",
+       "      <td>66</td>\n",
+       "      <td>1</td>\n",
+       "      <td>30</td>\n",
+       "      <td>29</td>\n",
+       "      <td>14</td>\n",
+       "      <td>1</td>\n",
+       "      <td>293</td>\n",
+       "      <td>66</td>\n",
+       "      <td>1</td>\n",
+       "      <td>30</td>\n",
+       "      <td>29</td>\n",
+       "      <td>14</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>446</td>\n",
+       "      <td>33</td>\n",
+       "      <td>20</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>1</td>\n",
+       "      <td>315</td>\n",
+       "      <td>81</td>\n",
+       "      <td>7</td>\n",
+       "      <td>24</td>\n",
+       "      <td>38</td>\n",
+       "      <td>39</td>\n",
+       "      <td>14</td>\n",
+       "      <td>3449</td>\n",
+       "      <td>835</td>\n",
+       "      <td>69</td>\n",
+       "      <td>321</td>\n",
+       "      <td>414</td>\n",
+       "      <td>375</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>632</td>\n",
+       "      <td>43</td>\n",
+       "      <td>10</td>\n",
+       "      <td>475.0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   AtBat  Hits  HmRun  Runs  RBI  Walks  Years  CAtBat  CHits  CHmRun  CRuns  \\\n",
+       "0    293    66      1    30   29     14      1     293     66       1     30   \n",
+       "1    315    81      7    24   38     39     14    3449    835      69    321   \n",
+       "\n",
+       "   CRBI  CWalks  League  Division  PutOuts  Assists  Errors  Salary  NewLeague  \n",
+       "0    29      14       0         0      446       33      20     NaN          0  \n",
+       "1   414     375       1         1      632       43      10   475.0          1  "
+      ]
+     },
+     "execution_count": 270,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "hit[:2]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 271,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>AtBat</th>\n",
+       "      <th>Hits</th>\n",
+       "      <th>HmRun</th>\n",
+       "      <th>Runs</th>\n",
+       "      <th>RBI</th>\n",
+       "      <th>Walks</th>\n",
+       "      <th>Years</th>\n",
+       "      <th>CAtBat</th>\n",
+       "      <th>CHits</th>\n",
+       "      <th>CHmRun</th>\n",
+       "      <th>CRuns</th>\n",
+       "      <th>CRBI</th>\n",
+       "      <th>CWalks</th>\n",
+       "      <th>League</th>\n",
+       "      <th>Division</th>\n",
+       "      <th>PutOuts</th>\n",
+       "      <th>Assists</th>\n",
+       "      <th>Errors</th>\n",
+       "      <th>Salary</th>\n",
+       "      <th>NewLeague</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <td>0</td>\n",
+       "      <td>293.0</td>\n",
+       "      <td>66.0</td>\n",
+       "      <td>1.0</td>\n",
+       "      <td>30.0</td>\n",
+       "      <td>29.0</td>\n",
+       "      <td>14.0</td>\n",
+       "      <td>1.0</td>\n",
+       "      <td>293.0</td>\n",
+       "      <td>66.0</td>\n",
+       "      <td>1.0</td>\n",
+       "      <td>30.0</td>\n",
+       "      <td>29.0</td>\n",
+       "      <td>14.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>446.0</td>\n",
+       "      <td>33.0</td>\n",
+       "      <td>20.0</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>0.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>1</td>\n",
+       "      <td>315.0</td>\n",
+       "      <td>81.0</td>\n",
+       "      <td>7.0</td>\n",
+       "      <td>24.0</td>\n",
+       "      <td>38.0</td>\n",
+       "      <td>39.0</td>\n",
+       "      <td>14.0</td>\n",
+       "      <td>3449.0</td>\n",
+       "      <td>835.0</td>\n",
+       "      <td>69.0</td>\n",
+       "      <td>321.0</td>\n",
+       "      <td>414.0</td>\n",
+       "      <td>375.0</td>\n",
+       "      <td>1.0</td>\n",
+       "      <td>1.0</td>\n",
+       "      <td>632.0</td>\n",
+       "      <td>43.0</td>\n",
+       "      <td>10.0</td>\n",
+       "      <td>475.0</td>\n",
+       "      <td>1.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>2</td>\n",
+       "      <td>479.0</td>\n",
+       "      <td>130.0</td>\n",
+       "      <td>18.0</td>\n",
+       "      <td>66.0</td>\n",
+       "      <td>72.0</td>\n",
+       "      <td>76.0</td>\n",
+       "      <td>3.0</td>\n",
+       "      <td>1624.0</td>\n",
+       "      <td>457.0</td>\n",
+       "      <td>63.0</td>\n",
+       "      <td>224.0</td>\n",
+       "      <td>266.0</td>\n",
+       "      <td>263.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>1.0</td>\n",
+       "      <td>880.0</td>\n",
+       "      <td>82.0</td>\n",
+       "      <td>14.0</td>\n",
+       "      <td>480.0</td>\n",
+       "      <td>0.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>3</td>\n",
+       "      <td>496.0</td>\n",
+       "      <td>141.0</td>\n",
+       "      <td>20.0</td>\n",
+       "      <td>65.0</td>\n",
+       "      <td>78.0</td>\n",
+       "      <td>37.0</td>\n",
+       "      <td>11.0</td>\n",
+       "      <td>5628.0</td>\n",
+       "      <td>1575.0</td>\n",
+       "      <td>225.0</td>\n",
+       "      <td>828.0</td>\n",
+       "      <td>838.0</td>\n",
+       "      <td>354.0</td>\n",
+       "      <td>1.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>200.0</td>\n",
+       "      <td>11.0</td>\n",
+       "      <td>3.0</td>\n",
+       "      <td>500.0</td>\n",
+       "      <td>1.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>4</td>\n",
+       "      <td>321.0</td>\n",
+       "      <td>87.0</td>\n",
+       "      <td>10.0</td>\n",
+       "      <td>39.0</td>\n",
+       "      <td>42.0</td>\n",
+       "      <td>30.0</td>\n",
+       "      <td>2.0</td>\n",
+       "      <td>396.0</td>\n",
+       "      <td>101.0</td>\n",
+       "      <td>12.0</td>\n",
+       "      <td>48.0</td>\n",
+       "      <td>46.0</td>\n",
+       "      <td>33.0</td>\n",
+       "      <td>1.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>805.0</td>\n",
+       "      <td>40.0</td>\n",
+       "      <td>4.0</td>\n",
+       "      <td>91.5</td>\n",
+       "      <td>1.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>317</td>\n",
+       "      <td>497.0</td>\n",
+       "      <td>127.0</td>\n",
+       "      <td>7.0</td>\n",
+       "      <td>65.0</td>\n",
+       "      <td>48.0</td>\n",
+       "      <td>37.0</td>\n",
+       "      <td>5.0</td>\n",
+       "      <td>2703.0</td>\n",
+       "      <td>806.0</td>\n",
+       "      <td>32.0</td>\n",
+       "      <td>379.0</td>\n",
+       "      <td>311.0</td>\n",
+       "      <td>138.0</td>\n",
+       "      <td>1.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>325.0</td>\n",
+       "      <td>9.0</td>\n",
+       "      <td>3.0</td>\n",
+       "      <td>700.0</td>\n",
+       "      <td>1.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>318</td>\n",
+       "      <td>492.0</td>\n",
+       "      <td>136.0</td>\n",
+       "      <td>5.0</td>\n",
+       "      <td>76.0</td>\n",
+       "      <td>50.0</td>\n",
+       "      <td>94.0</td>\n",
+       "      <td>12.0</td>\n",
+       "      <td>5511.0</td>\n",
+       "      <td>1511.0</td>\n",
+       "      <td>39.0</td>\n",
+       "      <td>897.0</td>\n",
+       "      <td>451.0</td>\n",
+       "      <td>875.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>313.0</td>\n",
+       "      <td>381.0</td>\n",
+       "      <td>20.0</td>\n",
+       "      <td>875.0</td>\n",
+       "      <td>0.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>319</td>\n",
+       "      <td>475.0</td>\n",
+       "      <td>126.0</td>\n",
+       "      <td>3.0</td>\n",
+       "      <td>61.0</td>\n",
+       "      <td>43.0</td>\n",
+       "      <td>52.0</td>\n",
+       "      <td>6.0</td>\n",
+       "      <td>1700.0</td>\n",
+       "      <td>433.0</td>\n",
+       "      <td>7.0</td>\n",
+       "      <td>217.0</td>\n",
+       "      <td>93.0</td>\n",
+       "      <td>146.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>1.0</td>\n",
+       "      <td>37.0</td>\n",
+       "      <td>113.0</td>\n",
+       "      <td>7.0</td>\n",
+       "      <td>385.0</td>\n",
+       "      <td>0.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>320</td>\n",
+       "      <td>573.0</td>\n",
+       "      <td>144.0</td>\n",
+       "      <td>9.0</td>\n",
+       "      <td>85.0</td>\n",
+       "      <td>60.0</td>\n",
+       "      <td>78.0</td>\n",
+       "      <td>8.0</td>\n",
+       "      <td>3198.0</td>\n",
+       "      <td>857.0</td>\n",
+       "      <td>97.0</td>\n",
+       "      <td>470.0</td>\n",
+       "      <td>420.0</td>\n",
+       "      <td>332.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>1314.0</td>\n",
+       "      <td>131.0</td>\n",
+       "      <td>12.0</td>\n",
+       "      <td>960.0</td>\n",
+       "      <td>0.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <td>321</td>\n",
+       "      <td>631.0</td>\n",
+       "      <td>170.0</td>\n",
+       "      <td>9.0</td>\n",
+       "      <td>77.0</td>\n",
+       "      <td>44.0</td>\n",
+       "      <td>31.0</td>\n",
+       "      <td>11.0</td>\n",
+       "      <td>4908.0</td>\n",
+       "      <td>1457.0</td>\n",
+       "      <td>30.0</td>\n",
+       "      <td>775.0</td>\n",
+       "      <td>357.0</td>\n",
+       "      <td>249.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>1.0</td>\n",
+       "      <td>408.0</td>\n",
+       "      <td>4.0</td>\n",
+       "      <td>3.0</td>\n",
+       "      <td>1000.0</td>\n",
+       "      <td>0.0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>322 rows × 20 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "     AtBat   Hits  HmRun  Runs   RBI  Walks  Years  CAtBat   CHits  CHmRun  \\\n",
+       "0    293.0   66.0    1.0  30.0  29.0   14.0    1.0   293.0    66.0     1.0   \n",
+       "1    315.0   81.0    7.0  24.0  38.0   39.0   14.0  3449.0   835.0    69.0   \n",
+       "2    479.0  130.0   18.0  66.0  72.0   76.0    3.0  1624.0   457.0    63.0   \n",
+       "3    496.0  141.0   20.0  65.0  78.0   37.0   11.0  5628.0  1575.0   225.0   \n",
+       "4    321.0   87.0   10.0  39.0  42.0   30.0    2.0   396.0   101.0    12.0   \n",
+       "..     ...    ...    ...   ...   ...    ...    ...     ...     ...     ...   \n",
+       "317  497.0  127.0    7.0  65.0  48.0   37.0    5.0  2703.0   806.0    32.0   \n",
+       "318  492.0  136.0    5.0  76.0  50.0   94.0   12.0  5511.0  1511.0    39.0   \n",
+       "319  475.0  126.0    3.0  61.0  43.0   52.0    6.0  1700.0   433.0     7.0   \n",
+       "320  573.0  144.0    9.0  85.0  60.0   78.0    8.0  3198.0   857.0    97.0   \n",
+       "321  631.0  170.0    9.0  77.0  44.0   31.0   11.0  4908.0  1457.0    30.0   \n",
+       "\n",
+       "     CRuns   CRBI  CWalks  League  Division  PutOuts  Assists  Errors  Salary  \\\n",
+       "0     30.0   29.0    14.0     0.0       0.0    446.0     33.0    20.0     NaN   \n",
+       "1    321.0  414.0   375.0     1.0       1.0    632.0     43.0    10.0   475.0   \n",
+       "2    224.0  266.0   263.0     0.0       1.0    880.0     82.0    14.0   480.0   \n",
+       "3    828.0  838.0   354.0     1.0       0.0    200.0     11.0     3.0   500.0   \n",
+       "4     48.0   46.0    33.0     1.0       0.0    805.0     40.0     4.0    91.5   \n",
+       "..     ...    ...     ...     ...       ...      ...      ...     ...     ...   \n",
+       "317  379.0  311.0   138.0     1.0       0.0    325.0      9.0     3.0   700.0   \n",
+       "318  897.0  451.0   875.0     0.0       0.0    313.0    381.0    20.0   875.0   \n",
+       "319  217.0   93.0   146.0     0.0       1.0     37.0    113.0     7.0   385.0   \n",
+       "320  470.0  420.0   332.0     0.0       0.0   1314.0    131.0    12.0   960.0   \n",
+       "321  775.0  357.0   249.0     0.0       1.0    408.0      4.0     3.0  1000.0   \n",
+       "\n",
+       "     NewLeague  \n",
+       "0          0.0  \n",
+       "1          1.0  \n",
+       "2          0.0  \n",
+       "3          1.0  \n",
+       "4          1.0  \n",
+       "..         ...  \n",
+       "317        1.0  \n",
+       "318        0.0  \n",
+       "319        0.0  \n",
+       "320        0.0  \n",
+       "321        0.0  \n",
+       "\n",
+       "[322 rows x 20 columns]"
+      ]
+     },
+     "execution_count": 271,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "hit.astype(\"float64\")\n",
+    "#evet tüm değerleri float64 yaparak optimize şekilde çalışmasını sağlıyacağız \n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    " "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Bagmımlı ve Bağımsız değişken Ayırma"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 272,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "X = hit.drop(\"Salary\" ,axis = 1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 273,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "y = hit[\"Salary\"]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    " "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    " "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Test _ Train Veri seti ayırma "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 274,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.model_selection import train_test_split"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 275,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "X_train , X_test , y_train ,y_test = train_test_split(X ,y,test_size = 0.20)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 276,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>AtBat</th>\n",
+       "      <th>Hits</th>\n",
+       "      <th>HmRun</th>\n",
+       "      <th>Runs</th>\n",
+       "      <th>RBI</th>\n",
+       "      <th>Walks</th>\n",
+       "      <th>Years</th>\n",
+       "      <th>CAtBat</th>\n",
+       "      <th>CHits</th>\n",
+       "      <th>CHmRun</th>\n",
+       "      <th>CRuns</th>\n",
+       "      <th>CRBI</th>\n",
+       "      <th>CWalks</th>\n",
+       "      <th>League</th>\n",
+       "      <th>Division</th>\n",
+       "      <th>PutOuts</th>\n",
+       "      <th>Assists</th>\n",
+       "      <th>Errors</th>\n",
+       "      <th>NewLeague</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <td>96</td>\n",
+       "      <td>565</td>\n",
+       "      <td>148</td>\n",
+       "      <td>24</td>\n",
+       "      <td>90</td>\n",
+       "      <td>104</td>\n",
+       "      <td>77</td>\n",
+       "      <td>14</td>\n",
+       "      <td>7287</td>\n",
+       "      <td>2083</td>\n",
+       "      <td>305</td>\n",
+       "      <td>1135</td>\n",
+       "      <td>1234</td>\n",
+       "      <td>791</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>292</td>\n",
+       "      <td>9</td>\n",
+       "      <td>5</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "    AtBat  Hits  HmRun  Runs  RBI  Walks  Years  CAtBat  CHits  CHmRun  CRuns  \\\n",
+       "96    565   148     24    90  104     77     14    7287   2083     305   1135   \n",
+       "\n",
+       "    CRBI  CWalks  League  Division  PutOuts  Assists  Errors  NewLeague  \n",
+       "96  1234     791       0         0      292        9       5          0  "
+      ]
+     },
+     "execution_count": 276,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "X_train.head(1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 277,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "96    1861.46\n",
+       "Name: Salary, dtype: float64"
+      ]
+     },
+     "execution_count": 277,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y_train.head(1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 278,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(257, 19)\n",
+      "(257,)\n",
+      "(65, 19)\n",
+      "(65,)\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(X_train.shape)\n",
+    "print(y_train.shape)\n",
+    "print(X_test.shape)\n",
+    "print(y_test.shape)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 279,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "y_train.fillna(y_train.mean(),inplace = True )\n",
+    "#linear Reg fit ederken hata verdiği için yapıyorum"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 280,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "y_test.fillna(y_test.mean() , inplace = True)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Veri seti Modelleme "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## PCR Temel Birleşen Regression:\n",
+    "    - Değiskenler arasındaki kovaryansları birbirine yakın olan bagımsız değişkenleri veri setinden cıkarır , bu sayade optimum bagımsız değişken ile bagımlı değişkeni temsil eder \n",
+    "    \n",
+    "    - Veri kaybı göze alınır \n",
+    "    \n",
+    "    - Coklu Doğrusal Baglantı Problemleri Ortadan kalkar"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 281,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.decomposition import PCA\n",
+    "from sklearn.preprocessing import scale\n",
+    "pca = PCA()\n",
+    "# burda PCA içerisine kaç değişkenden oluşacagı parametresini girebiliriz ancak\n",
+    "# tüm değerlerini etki yüzdesini almak için şuanlık girmiyeceğiz \n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 282,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[ 1.17917454,  0.99103891,  1.59459667, ..., -0.72923331,\n",
+       "        -0.49572036, -0.90702538],\n",
+       "       [ 0.92664006,  0.94855046,  0.27726038, ..., -0.72923331,\n",
+       "         0.10593316,  1.10250498],\n",
+       "       [-1.30731885, -1.28209304, -1.15983376, ..., -0.58661634,\n",
+       "        -0.49572036, -0.90702538],\n",
+       "       ...,\n",
+       "       [-1.12601204, -0.96342968,  0.15750254, ..., -0.75062585,\n",
+       "        -0.79654712,  1.10250498],\n",
+       "       [ 0.07190795, -0.32610297, -1.15983376, ...,  1.83787215,\n",
+       "         1.15882682,  1.10250498],\n",
+       "       [ 1.0820459 ,  0.96979468,  2.1933859 , ..., -0.0518027 ,\n",
+       "         0.25634654, -0.90702538]])"
+      ]
+     },
+     "execution_count": 282,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "scale(X_train) "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 283,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "X_reduced_train = pca.fit_transform(scale(X_train))\n",
+    "# burada ilk önce X_train data setimizi scale ile ölceklendirdik ardından fit ettik \n",
+    "# transform fonksiyonunun kullanarak boyu indirgeme işlemi yaptık \n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 284,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[ 6.82287243e+00, -4.39362551e-03, -1.42206367e+00,\n",
+       "        -4.48217900e-01, -1.17147981e+00, -2.21501335e-01,\n",
+       "         1.78337293e-01, -4.89157137e-01, -2.40947940e-01,\n",
+       "         5.37164046e-01,  2.95352871e-02,  1.27912186e-01,\n",
+       "         4.21229229e-01, -2.19860778e-01, -2.94481665e-01,\n",
+       "        -1.91835226e-01,  7.65821354e-02, -1.13923018e-01,\n",
+       "        -3.37172404e-02]])"
+      ]
+     },
+     "execution_count": 284,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "X_reduced_train[:1 ,:]\n",
+    "# birinci gözlemin tüm değişkenlerce etkisi"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 285,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([ 38.77761373,  60.89634698,  71.63885987,  79.60680722,\n",
+       "        84.8502043 ,  89.0891454 ,  92.69399472,  95.27272061,\n",
+       "        96.571175  ,  97.48154805,  98.15365786,  98.73539804,\n",
+       "        99.18794606,  99.52451862,  99.76947629,  99.89789999,\n",
+       "        99.96900109,  99.99322476, 100.        ])"
+      ]
+     },
+     "execution_count": 285,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "np.cumsum(pca.explained_variance_ratio_)*100\n",
+    "# burda dönen olay şöyledir her sutunun değerlerinin varyansını birbirine ekleyerek toplar\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 286,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([3.87776137e-01, 2.21187333e-01, 1.07425129e-01, 7.96794735e-02,\n",
+       "       5.24339708e-02, 4.23894109e-02, 3.60484933e-02, 2.57872589e-02,\n",
+       "       1.29845439e-02, 9.10373052e-03, 6.72109805e-03, 5.81740187e-03,\n",
+       "       4.52548017e-03, 3.36572558e-03, 2.44957672e-03, 1.28423698e-03,\n",
+       "       7.11011037e-04, 2.42236650e-04, 6.77524131e-05])"
+      ]
+     },
+     "execution_count": 286,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "pca.explained_variance_ratio_ # bakın burda bir öncekilerle toplaya toplaya gidince usteki değer cıkıyor\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 287,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([38.78, 60.9 , 71.64, 79.61, 84.85, 89.09, 92.69, 95.27, 96.57,\n",
+       "       97.48])"
+      ]
+     },
+     "execution_count": 287,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import numpy as np\n",
+    "\n",
+    "# bu değişkenlerce kumulatif olarak açıklanan varyansı inceleyelim \n",
+    "\n",
+    "np.cumsum(np.round(pca.explained_variance_ratio_ , decimals = 4) * 100)[:10]\n",
+    "# np.cumsum = kumulatıf toplama\n",
+    "# np.round = diziyi belirtilen ondalıklı sayıya yuvarlar ,decimals = 4 ondalık parametresi\n",
+    "# pca.exp.... = acıklanan varyans oranı "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "- Yukarıda Veri sertini kaç değisken ile yüzde kaç açıklandığı verilmiştir \n",
+    "- 1 ile 39 , 2 ile 61 ,3 ile 72 gibi "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    " "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### PCR Modelini LinearRegressionda kullanma "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 288,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)"
+      ]
+     },
+     "execution_count": 288,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from sklearn.linear_model import LinearRegression\n",
+    "lm = LinearRegression()\n",
+    "lm = lm.fit(X_reduced_train , y_train)\n",
+    "lm"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 289,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "550.7725450236967"
+      ]
+     },
+     "execution_count": 289,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "lm.intercept_\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 290,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([  80.64125274,  -22.2189851 ,   11.87782623,  -31.63482401,\n",
+       "        -56.0910853 ,   53.1217526 ,  -47.54435718,   29.83816589,\n",
+       "         14.04765191,   12.73170968,  -60.25684264,    8.58183972,\n",
+       "         94.49755601, -259.922054  , -280.38688689,  305.97825526,\n",
+       "       -218.01613194, -469.60541649, -197.63987297])"
+      ]
+     },
+     "execution_count": 290,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "lm.coef_"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "-Yukarıda ilk olarak PCA işleminde bir boyut indirgeme uyguladık ve\n",
+    "indirdiğimiz boyutlar ile linear Regression modeli kurduk "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    " "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Tahmin "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 291,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([1296.29403395,  621.84265408,  393.35960309,  269.40716199,\n",
+       "        949.29269211])"
+      ]
+     },
+     "execution_count": 291,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y_pred = lm.predict(X_reduced_train)\n",
+    "y_pred[:5]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### hata hesaplama:\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 292,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "304.8477311861173"
+      ]
+     },
+     "execution_count": 292,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from sklearn.metrics import mean_squared_error\n",
+    "np.sqrt(mean_squared_error(y_train , y_pred))\n",
+    "#hata kareler ortalamasını bulalaım\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 293,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "535.9258821292775"
+      ]
+     },
+     "execution_count": 293,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "hit.Salary.mean()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 294,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0.4381423027327226"
+      ]
+     },
+     "execution_count": 294,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from sklearn.metrics import r2_score\n",
+    "r2_score(y_train , y_pred)\n",
+    "#r kare yani ,veri setini açıklıyabilme oranı\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### test setinden tahminde bulumak için ilk önce test setini \n",
+    "#### PCR işlemine tabi etmemiz gerekir \n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 295,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "pca2 = PCA()\n",
+    "\n",
+    "X_reduced_test = pca2.fit_transform(scale(X_test))\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 296,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "y_pred2 = lm.predict( X_reduced_test )\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 297,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "361.0417217307139"
+      ]
+     },
+     "execution_count": 297,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "np.sqrt(mean_squared_error(y_test , y_pred2))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 298,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0.19883909141347644"
+      ]
+     },
+     "execution_count": 298,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "r2_score(y_test , y_pred2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Model Tuning "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 301,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "lm tahmin edilen değerler ortalaması :   550.7725450236966\n",
+      "lm hata kareler ortalaması :  361.0417217307139\n"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn.decomposition import PCA\n",
+    "from sklearn.preprocessing import scale\n",
+    "\n",
+    "pca = PCA()\n",
+    "X_reduced_train = pca.fit_transform(scale(X_train))\n",
+    "X_reduced_test = pca.fit_transform(scale(X_test))\n",
+    "# test  setinide PCA işlemine sokmamız gerekiyor sebebi rmse değeri alınırken hata vermemesi için\n",
+    "\n",
+    "\n",
+    "from sklearn.linear_model import LinearRegression\n",
+    "\n",
+    "lm = LinearRegression()\n",
+    "lm = lm.fit(X_reduced_train , y_train)\n",
+    "\n",
+    "from sklearn.metrics import mean_squared_error\n",
+    "\n",
+    "import numpy as np \n",
+    "y_pred = lm.predict(X_reduced_test)\n",
+    "print(\"lm tahmin edilen değerler ortalaması :  \" , str( y_pred.mean()  ) )\n",
+    "print(\"lm hata kareler ortalamasının karekoku  : \" , str (np.sqrt(mean_squared_error(y_test , y_pred) ) ))\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Cross_val yapma"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 308,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn import model_selection \n",
+    "cv_10 = model_selection.KFold( n_splits = 10,\n",
+    "                               shuffle = True, # cros val oncesi kariştirma \n",
+    "                               random_state = 1\n",
+    "                             )\n",
+    "lm = LinearRegression()\n",
+    "\n",
+    "RMSE_s = list()\n",
+    "for i in np.arange(1 , X_reduced_train.shape[1] + 1): # X_reduced in değişken sayısına kadar git\n",
+    "    \n",
+    "    score = np.sqrt(-1 * model_selection.cross_val_score(lm,\n",
+    "                                                         X_reduced_train[: , :i],\n",
+    "                                                         y_train.ravel(),\n",
+    "                                                        cv = cv_10,\n",
+    "                                                        scoring = \"neg_mean_squared_error\"\n",
+    "                                                        ).mean())\n",
+    "    RMSE_s.append(score)\n",
+    "    \n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 309,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Text(0.5, 1.0, 'Maas Tahmin Modeli için PCR Model Tuning')"
+      ]
+     },
+     "execution_count": 309,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<Figure size 432x288 with 1 Axes>"
+      ]
+     },
+     "metadata": {
+      "needs_background": "light"
+     },
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "import matplotlib.pyplot as plt\n",
+    "plt.plot(RMSE_s , \"-v\");\n",
+    "plt.xlabel(\"Birleşen sayısı\")\n",
+    "plt.ylabel(\"RMSE\")\n",
+    "plt.title(\"Maas Tahmin Modeli için PCR Model Tuning\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "- grafiğe göre optimmum 5 değişken ile en iyi temsilimizi yaparız \n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Şimdi 5 değeişkenli modelimizi kuralım"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 316,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "333.24349035342397\n"
+     ]
+    }
+   ],
+   "source": [
+    "lm = LinearRegression()\n",
+    "\n",
+    "lm = lm.fit(X_reduced_train[: , : 5] , y_train)\n",
+    "# fit etme işlemini ilk 5 gözlem ile yapalım \n",
+    "\n",
+    "y_pred = lm.predict(X_reduced_test[: , : 5])\n",
+    "# tahmin etme işlemini ilk 5 gözlem ile yapalım \n",
+    "\n",
+    "print(np.sqrt(mean_squared_error(y_test , y_pred )))\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### özet ;\n",
+    " \n",
+    "    1 . Modeli ölceklendirerek fit_transform işlemine tabi tut \n",
+    "    \n",
+    "    2 . (opsiyonel .. açıklanabilirlik öğrenmek için ) Modelin açıklanabilirlik varyans oranlarını al ve bunları birbirlerine ekliye ekliye yeni yüzdeler cıkar\n",
+    "    \n",
+    "    3 . Bu modelde ölçeklendirmiş olduğun değerleri farklı bir regressionda fit et\n",
+    "    \n",
+    "    4 . Bu fit ettiğin değer üzerinden tahmin yapabilmek için tahmin değerini \"1.\" işlemde yapılan işlemleri aynen uygula \n",
+    "    \n",
+    "    5 . modeli test edebilirsin \n",
+    "    \n",
+    "    6 . model tuning işlemi , Burada optimum değeri bulmak için bir for döngüsü açıp cros_val işlemi uyguluyoruz ve optimum değer ile modelimizi kurup test setimizle deniyoruz .\n",
+    "    "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
